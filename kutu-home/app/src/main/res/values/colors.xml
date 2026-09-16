@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_glass_shelf">#D9151D28</color>
+    <color name="bg_glass_shelf_border">#26FFFFFF</color>
+    <color name="bg_chip">#991C2636</color>
+    <color name="bg_chip_focused">#E62E3C52</color>
+    <color name="chip_stroke">#33FFFFFF</color>
+    <color name="chip_stroke_focused">#8000E5FF</color>
+    <color name="text_clock">#FFFFFF</color>
+    <color name="text_date">#E0EAEF</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_white_secondary">#B0C0D0</color>
+    <color name="focus_ring">#00E5FF</color>
+    <color name="tile_card_bg">#202A38</color>
+    <color name="modal_overlay">#CC0D131B</color>
+    <color name="status_green">#00E676</color>
+    <color name="status_orange">#FF9100</color>
+</resources>

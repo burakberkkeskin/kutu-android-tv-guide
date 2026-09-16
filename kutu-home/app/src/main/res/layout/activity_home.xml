@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:paddingHorizontal="48dp"
+    android:paddingVertical="36dp">
+
+    <!-- Top Right: Clock and Date (Dark Charcoal text on light sky) -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:orientation="vertical"
+        android:gravity="end">
+
+        <TextClock
+            android:id="@+id/clock_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:format12Hour="HH:mm"
+            android:format24Hour="HH:mm"
+            android:textColor="@color/text_clock"
+            android:textSize="44sp"
+            android:textStyle="bold" />
+
+        <TextClock
+            android:id="@+id/clock_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-4dp"
+            android:format12Hour="d MMMM EEEE"
+            android:format24Hour="d MMMM EEEE"
+            android:textColor="@color/text_date"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Bottom Center: Shelf and Dock Layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:layout_marginBottom="12dp">
+
+
+        <!-- Move Mode Hint Banner -->
+        <TextView
+            android:id="@+id/move_hint_banner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_chip_normal"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="6dp"
+            android:text="@string/move_hint"
+            android:textColor="#FFD700"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="gone" />
+
+        <!-- Centered Translucent Dark-Glass Shelf with Horizontal Fading Edge -->
+        <FrameLayout
+            android:id="@+id/shelf_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bg_shelf"
+            android:paddingVertical="12dp"
+            android:paddingHorizontal="16dp"
+            android:clipChildren="true"
+            android:clipToPadding="false">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/dock_recycler"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:requiresFadingEdge="horizontal"
+                android:fadingEdgeLength="48dp"
+                android:scrollbars="none" />
+        </FrameLayout>
+
+        <!-- Utility Chips below Shelf -->
+        <LinearLayout
+            android:id="@+id/chips_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/chip_mirror"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:paddingHorizontal="18dp"
+                android:paddingVertical="10dp"
+                android:background="@drawable/bg_chip_selector"
+                android:focusable="true"
+                android:clickable="true"
+                android:text="@string/chip_mirror"
+                android:textColor="@color/text_white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/chip_settings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:paddingHorizontal="18dp"
+                android:paddingVertical="10dp"
+                android:background="@drawable/bg_chip_selector"
+                android:focusable="true"
+                android:clickable="true"
+                android:text="@string/chip_settings"
+                android:textColor="@color/text_white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/chip_all_apps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:paddingHorizontal="18dp"
+                android:paddingVertical="10dp"
+                android:background="@drawable/bg_chip_selector"
+                android:focusable="true"
+                android:clickable="true"
+                android:text="@string/chip_all_apps"
+                android:textColor="@color/text_white"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Modal Fullscreen Overlay -->
+    <FrameLayout
+        android:id="@+id/modal_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/modal_overlay"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <!-- 1. Screen Mirroring Dialog -->
+        <LinearLayout
+            android:id="@+id/dialog_mirror"
+            android:layout_width="560dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_modal"
+            android:orientation="vertical"
+            android:padding="32dp"
+            android:gravity="center_horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mirror_title"
+                android:textColor="@color/text_white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:text="@string/mirror_desc_apple"
+                android:textColor="@color/text_white_secondary"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:id="@+id/mirror_status_dot"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:background="@drawable/bg_chip_focused" />
+
+                <TextView
+                    android:id="@+id/mirror_status_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/mirror_status_ready"
+                    android:textColor="@color/status_green"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btn_start_mirror_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:background="@drawable/bg_chip_selector"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:nextFocusLeft="@id/btn_start_mirror_service"
+                    android:nextFocusRight="@id/btn_close_mirror_dialog"
+                    android:nextFocusUp="@id/btn_start_mirror_service"
+                    android:nextFocusDown="@id/btn_start_mirror_service"
+                    android:text="@string/btn_start_mirror"
+                    android:textColor="@color/text_white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btn_close_mirror_dialog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:background="@drawable/bg_chip_selector"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:nextFocusLeft="@id/btn_start_mirror_service"
+                    android:nextFocusRight="@id/btn_close_mirror_dialog"
+                    android:nextFocusUp="@id/btn_close_mirror_dialog"
+                    android:nextFocusDown="@id/btn_close_mirror_dialog"
+                    android:text="@string/btn_close"
+                    android:textColor="@color/text_white"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 2. All Apps Modal Drawer -->
+        <LinearLayout
+            android:id="@+id/dialog_all_apps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="32dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="@string/chip_all_apps"
+                android:textColor="@color/text_white"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/all_apps_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:clipToPadding="false"
+                android:clipChildren="false" />
+        </LinearLayout>
+
+        <!-- 3. Context Menu Modal -->
+        <LinearLayout
+            android:id="@+id/dialog_context_menu"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_modal"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/context_menu_app_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/text_white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+            <LinearLayout
+                android:id="@+id/context_menu_items_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal" />
+        </LinearLayout>
+
+    </FrameLayout>
+
+</FrameLayout>

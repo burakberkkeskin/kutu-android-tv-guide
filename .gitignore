@@ -1,0 +1,28 @@
+# Build & IDE
+.gradle/
+build/
+*/build/
+*/*/build/
+.idea/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+*.swp
+*.bak
+*~
+
+# Android Local Properties
+local.properties
+.kotlin/
+*/.kotlin/
+
+# Temporary / OS files
+Thumbs.db
+ehthumbs.db
+.spotlight-V100
+.Trashes
+
+# Ignore compiled binaries
+bin/
+*.apk

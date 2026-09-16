@@ -1,0 +1,2 @@
+package:com.next.iptv
+package:com.jettv.player

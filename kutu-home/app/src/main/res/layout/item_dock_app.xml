@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="6dp"
+    android:layout_marginVertical="4dp"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:focusable="true"
+    android:clickable="true">
+
+    <FrameLayout
+        android:id="@+id/icon_card"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:background="@drawable/bg_tile_selector"
+        android:duplicateParentState="true">
+
+        <ImageView
+            android:id="@+id/app_icon"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/app_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="center"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textColor="@color/text_white"
+        android:alpha="0.85"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:shadowColor="#CC000000"
+        android:shadowDx="0"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        android:duplicateParentState="true" />
+
+</LinearLayout>
